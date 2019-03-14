@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 offset-lg-1 col-lg-8 offset-lg-2">
+      <h2>Contact Us</h2>
+      <form [formGroup]="contactForm" novalidate (ngSubmit)="doContinue()">
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="fullName">Name:</label>
+              <input formControlName="fullName" id="fullName" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input formControlName="email" id="email" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label for="message">Name:</label>
+                <textarea formControlName="message" id="message" class="form-control" ></textarea>
+              </div>
+            </div>
+          </div>
+  
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label>Captcha:</label>
+              <captcha
+                #captchaComponent
+                [apiBaseUrl]="captchaApiBaseUrl"
+                [nonce]="captchaNonce"
+                (onValidToken)="onValidToken($event)"
+                successMessage="You can submit your request now."
+              >
+              </captcha>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="buttonbar">
+              <button
+                #submitBtn
+                type="button"
+                class="btn btn-primary btn-wide"
+                (click)="doContinue()"
+                [disabled]="submitDisabled()"
+              >
+                <fa-icon *ngIf="isBusy" icon="spinner" [spin]="true"></fa-icon>
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-none d-xl-block">X-LARGE (XL)</div>
+        <div class="d-none d-lg-block d-xl-none">LARGE (LG)</div>
+        <div class="d-none d-md-block d-lg-none">MEDIUM (M)</div>
+        <div class="d-none d-sm-block d-md-none">SMALL (SM)</div>
+        <div class="d-block d-sm-none">X-SMALL (Default)</div>
+      </form>
+    </div>
+  </div>
+</div>
